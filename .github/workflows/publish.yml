@@ -1,0 +1,41 @@
+name: Publish
+
+on:
+  workflow_dispatch:
+    inputs:
+      package:
+        type: choice
+        description: Package to publish
+        default: all
+        options:
+          - all
+          - eslint-config
+          - tsconfig
+          - prettier-config
+          - markdownlint-config
+          - vitest-config
+          - commitlint-config
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: oven-sh/setup-bun@v2
+      - run: bun install --frozen-lockfile
+      - name: Configure npm auth
+        run: echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" >> ~/.npmrc
+      - name: Publish all packages
+        if: inputs.package == 'all'
+        run: |
+          for pkg in eslint-config tsconfig prettier-config markdownlint-config vitest-config commitlint-config; do
+            echo "Publishing $pkg..."
+            cd packages/$pkg
+            bun publish --access public
+            cd ../..
+          done
+      - name: Publish single package
+        if: inputs.package != 'all'
+        run: |
+          cd packages/${{ inputs.package }}
+          bun publish --access public
