@@ -1,0 +1,15 @@
+{
+  "name": "@drod3763/vitest-config",
+  "version": "1.0.0",
+  "type": "module",
+  "exports": {
+    ".": "./index.mjs"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "peerDependencies": {
+    "@vitest/coverage-v8": ">=2.0.0",
+    "vitest": ">=2.0.0"
+  }
+}
