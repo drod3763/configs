@@ -1,0 +1,14 @@
+{
+  "name": "@drod3763/markdownlint-config",
+  "version": "1.0.0",
+  "main": "index.yaml",
+  "exports": {
+    ".": "./index.yaml"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "peerDependencies": {
+    "markdownlint-cli2": ">=0.17.0"
+  }
+}
