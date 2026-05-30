@@ -1,0 +1,14 @@
+{
+  "name": "@drod3763/commitlint-config",
+  "version": "1.0.0",
+  "type": "module",
+  "exports": {
+    ".": "./index.mjs"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "peerDependencies": {
+    "@commitlint/cli": ">=19.0.0"
+  }
+}
