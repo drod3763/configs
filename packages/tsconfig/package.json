@@ -1,0 +1,11 @@
+{
+  "name": "@drod3763/tsconfig",
+  "version": "1.0.0",
+  "exports": {
+    "./base.json": "./base.json",
+    "./test.json": "./test.json"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
