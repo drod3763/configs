@@ -1,0 +1,18 @@
+name: Typecheck
+
+on:
+  workflow_call:
+    inputs:
+      tsconfig:
+        type: string
+        default: tsconfig.json
+        description: Path to tsconfig file
+
+jobs:
+  typecheck:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: oven-sh/setup-bun@v2
+      - run: bun install --frozen-lockfile
+      - run: bunx tsc --noEmit --project ${{ inputs.tsconfig }}

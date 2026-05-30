@@ -1,0 +1,24 @@
+name: Commitlint
+
+on:
+  workflow_call:
+    inputs:
+      base-sha:
+        type: string
+        required: true
+        description: Base commit SHA (PR base)
+      head-sha:
+        type: string
+        required: true
+        description: Head commit SHA (PR head)
+
+jobs:
+  commitlint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: oven-sh/setup-bun@v2
+      - run: bun install --frozen-lockfile
+      - run: bunx commitlint --from ${{ inputs.base-sha }} --to ${{ inputs.head-sha }} --verbose
